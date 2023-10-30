@@ -75,7 +75,7 @@ const Footer = () => {
                   <img
                     className="rounded-sm"
                     src="https://picsum.photos/id/121/40"
-                    alt="article 1"
+                    alt="Hotel 1"
                   />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
@@ -92,7 +92,7 @@ const Footer = () => {
                   <img
                     className="rounded-sm"
                     src="https://picsum.photos/id/122/40"
-                    alt="article 2"
+                    alt="Hotel 2"
                   />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
@@ -109,7 +109,7 @@ const Footer = () => {
                   <img
                     className="rounded-sm"
                     src="https://picsum.photos/id/123/40"
-                    alt="article 3"
+                    alt="Hotel 3"
                   />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
@@ -126,7 +126,7 @@ const Footer = () => {
                   <img
                     className="rounded-sm"
                     src="https://picsum.photos/id/124/40"
-                    alt="article 4"
+                    alt="Hotel 4"
                   />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
