@@ -34,6 +34,21 @@ async function run() {
     const database = client.db("quickcheckin");
     const roomsCollection = database.collection('rooms');
 
+
+
+    // All  API's
+
+    //get API's
+
+    app.get('/rooms', async(req,res) => {
+      const result = await roomsCollection.find().toArray();
+
+      res.send(result);
+    })
+
+
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
