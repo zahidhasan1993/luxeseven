@@ -7,8 +7,8 @@ const Banner = () => {
         <div className="w-full mx-auto lg:max-w-6xl">
           <div className="max-w-xl mx-auto text-center lg:p-10 lg:text-left">
             <div>
-              <p className="text-2xl font-medium tracking-tight text-black sm:text-4xl">
-                Book your destine
+              <p className="text-2xl font-agbalumo font-medium tracking-tight text-black sm:text-4xl">
+                Book your comfort and luxury.
               </p>
               <p className="max-w-xl mt-4 text-base tracking-tight text-gray-600">
                 Luxe Seven is a prestigious 7-star hotel renowned for its

@@ -5,7 +5,7 @@ import img4 from "../../assets/rooms/trump-hotel-chicago-illinois-usa.webp"
 import hotelImg from "../../assets/rooms/a.jpg"
 const Offer = () => {
   return (
-    <div className="w-full bg-white text-gray-700">
+    <div className="w-full bg-white text-black">
       {/* CONTAINER */}
       <div className="mx-auto py-10 px-4 w-full max-w-7xl grid grid-cols-2">
         {/* :ILLUSTRATION */}
