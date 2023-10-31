@@ -2,7 +2,7 @@ import img from "../../assets/1.jpg";
 
 const Banner = () => {
   return (
-    <div className="flex min-h-screen bg-white my-10">
+    <div className="flex h-full bg-white my-10">
       <div className="flex flex-col justify-center flex-1 px-8 py-8 md:px-12 lg:flex-none lg:px-24">
         <div className="w-full mx-auto lg:max-w-6xl">
           <div className="max-w-xl mx-auto text-center lg:p-10 lg:text-left">
@@ -11,10 +11,12 @@ const Banner = () => {
                 Book your destine
               </p>
               <p className="max-w-xl mt-4 text-base tracking-tight text-gray-600">
-                In our site you can find what you need and which room you want
-                to stay like dream with many more choices among the hotels you
-                can get your room just a click away. Thanks for visiting our
-                website!
+                Luxe Seven is a prestigious 7-star hotel renowned for its
+                unmatched luxury and exclusivity. Located in the heart of a
+                vibrant city, it offers convenient access to major attractions
+                and cultural sites. The accommodation at Luxe Seven is nothing
+                short of lavish, with meticulously designed rooms and suites
+                that come equipped with state-of-the-art amenities.
               </p>
             </div>
             <div className="flex flex-col items-center justify-center max-w-lg gap-3 mx-auto mt-10 lg:flex-row lg:justify-start">
@@ -22,7 +24,7 @@ const Banner = () => {
                 href="#"
                 className="items-center justify-center w-full px-6 py-2.5  text-center text-white bg-black border-2 border-black rounded-full inline-flex hover:bg-transparent hover:border-black hover:text-black hover:scale-110 duration-300 ease-in-out focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
               >
-                Visit Hotels
+                Visit Rooms
               </a>
               <a
                 href="#"

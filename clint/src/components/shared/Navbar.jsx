@@ -22,7 +22,7 @@ const Navbar = () => {
           className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0"
         >
           <span className="ml-3 text-2xl text-gray-100 font-semibold antialiased font-agbalumo">
-            QuickChickIn
+            LuxeSeven
           </span>
         </a>
         {/* Navbar */}

@@ -72,11 +72,6 @@ const Footer = () => {
             <ul>
               <li>
                 <a href="#" className="flex mb-2 hover:text-yellow-500">
-                  <img
-                    className="rounded-sm"
-                    src="https://picsum.photos/id/121/40"
-                    alt="Hotel 1"
-                  />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
                       Comfort with 2 bed and more....
@@ -89,11 +84,6 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="flex mb-2 hover:text-yellow-500">
-                  <img
-                    className="rounded-sm"
-                    src="https://picsum.photos/id/122/40"
-                    alt="Hotel 2"
-                  />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
                       For 4 person to stay at maldip
@@ -106,11 +96,6 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="flex mb-2 hover:text-yellow-500">
-                  <img
-                    className="rounded-sm"
-                    src="https://picsum.photos/id/123/40"
-                    alt="Hotel 3"
-                  />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
                       Delux room for couples
@@ -123,11 +108,6 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="flex mb-2 hover:text-yellow-500">
-                  <img
-                    className="rounded-sm"
-                    src="https://picsum.photos/id/124/40"
-                    alt="Hotel 4"
-                  />
                   <div className="ml-3 overflow-hidden">
                     <h3 className="font-semibold truncate">
                       Afordable rooms for bangali
