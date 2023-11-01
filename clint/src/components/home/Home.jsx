@@ -2,6 +2,7 @@ import SectionTitle from "../../customhooks/SectionTitle";
 import useRooms from "../../customhooks/useRooms";
 import RoomCard from "../shared/RoomCard";
 import Banner from "./Banner";
+import Gallery from "./Gallery";
 import Offer from "./Offer";
 
 const Home = () => {
@@ -19,6 +20,8 @@ const Home = () => {
           popularRooms.map(room => <RoomCard key={room._id} item={room}></RoomCard>)
         }
       </div>
+      <SectionTitle title="Our Gallery"></SectionTitle>]
+      <Gallery></Gallery>
     </div>
   );
 };

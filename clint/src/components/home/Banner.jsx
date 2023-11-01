@@ -1,8 +1,9 @@
 import img from "../../assets/1.jpg";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Banner = () => {
   return (
-    <div className="flex h-full bg-white my-10">
+    <div className="flex h-full md:h-[40rem] bg-white my-10">
       <div className="flex flex-col justify-center flex-1 px-8 py-8 md:px-12 lg:flex-none lg:px-24">
         <div className="w-full mx-auto lg:max-w-6xl">
           <div className="max-w-xl mx-auto text-center lg:p-10 lg:text-left">
@@ -22,7 +23,7 @@ const Banner = () => {
             <div className="flex flex-col items-center justify-center max-w-lg gap-3 mx-auto mt-10 lg:flex-row lg:justify-start">
               <a
                 href="#"
-                className="items-center justify-center w-full px-6 py-2.5  text-center text-white bg-black border-2 border-black rounded-full inline-flex hover:bg-transparent hover:border-black hover:text-black hover:scale-110 duration-300 ease-in-out focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
+                className="items-center justify-center w-full px-6 py-2.5  text-center text-white bg-black border-2 border-black rounded-full inline-flex hover:bg-transparent hover:border-black hover:text-black hover:font-agbalumo hover:scale-110 duration-300 ease-in-out focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
               >
                 Visit Rooms
               </a>
@@ -38,7 +39,7 @@ const Banner = () => {
       </div>
       <div className="relative flex-1 hidden w-0 lg:block">
         <div>
-          <img
+          <LazyLoadImage
             className="absolute inset-0 object-cover w-full h-full bg-gray-200 lg:border-l opacity-80 hover:scale-105 duration-300 ease-in-out"
             src={img}
             alt=""

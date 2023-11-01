@@ -1,6 +1,19 @@
+import Swal from 'sweetalert2';
+
 const Footer = () => {
   const date = new Date();
   const fullYear = date.getFullYear();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Your message sent successfully',
+      showConfirmButton: false,
+      timer: 1500,
+      
+    })
+  }
   // console.log(fullYear);
   return (
     <footer className="bg-black p-20 text-white">
@@ -123,7 +136,7 @@ const Footer = () => {
           <div className="px-4 w-full md:w-1/3 my-4">
             <h2 className="text-xl mb-6">Send Us Message</h2>
 
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="mb-2">
                 <label htmlFor="email" className="text-xs text-gray-200">
                   Email
@@ -147,7 +160,7 @@ const Footer = () => {
                   placeholder="I have something in mind"
                 ></textarea>
               </div>
-              <button className="rounded-sm py-2 px-4 text-gray-100 bg-gray-600 hover:bg-gray-700 focus:outline-none">
+              <button type='submit' className="rounded-sm py-2 px-4 text-gray-100 bg-gray-600 hover:bg-gray-700 focus:outline-none">
                 Send
               </button>
             </form>
@@ -158,7 +171,7 @@ const Footer = () => {
         <div className="-mx-4 py-4 flex flex-wrap justify-between items-center">
           <div className="px-4 w-full text-center sm:w-auto">
             <a href="/" className="inline-flex">
-              <h1 className="text-4xl font-agbalumo">QuickCheckIn</h1>
+              <h1 className="text-4xl font-agbalumo">LuxeSeven</h1>
             </a>
           </div>
           <div className="px-4 w-full text-center sm:w-auto sm:text-left">
