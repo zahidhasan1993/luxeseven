@@ -9,7 +9,7 @@ const ErrorPage = () => {
       <div className="flex flex-col items-center">
         {/* :TITLE */}
         <div className="text-center space-y-5">
-          <p className="text-6xl sm:text-7xl text-red-500 font-bold tracking-wide">
+          <p className="text-6xl sm:text-7xl text-black font-bold tracking-wide">
             404
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl text-gray-700 font-semibold capitalize">
@@ -24,7 +24,7 @@ const ErrorPage = () => {
         {/* :OPTION LINKS */}
         <div className="mt-8">
           <Link to="/">
-            <button className="px-5 py-2.5 rounded border border-transparent bg-red-600 text-center text-base text-white font-medium hover:bg-red-700 hover:scale-125 hover:font-semibold duration-300 ease-in">
+            <button className="px-5 py-2.5 rounded border border-transparent bg-black text-center text-base text-white font-medium hover:bg-white hover:text-black hover:scale-125 hover:font-semibold duration-300 ease-in">
               Get back to Homepage
             </button>
           </Link>

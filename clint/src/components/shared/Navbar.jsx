@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const links = (
     <>
-      <a href="#link" className="mr-8 hover:text-gray-300">
-        Register
-      </a>
-      <a href="#link" className="mr-8 hover:text-gray-300">
+      <Link to="/rooms" className="mr-8 hover:text-gray-300">
+        Rooms
+      </Link>
+      <Link to="/login" className="mr-8 hover:text-gray-300">
         Login
-      </a>
+      </Link>
     </>
   );
   return (
