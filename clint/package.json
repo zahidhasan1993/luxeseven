@@ -18,7 +18,8 @@
     "react-lazy-load-image-component": "^1.6.0",
     "react-router-dom": "^6.17.0",
     "sort-by": "^1.2.0",
-    "sweetalert2": "^11.9.0"
+    "sweetalert2": "^11.9.0",
+    "swiper": "^11.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

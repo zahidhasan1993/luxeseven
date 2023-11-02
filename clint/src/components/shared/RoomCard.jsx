@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from 'swiper/modules';
+import "swiper/css";
+import "swiper/css/navigation";
+
 const RoomCard = ({ item }) => {
-  //   console.log(item);
   const [modalOpen, setModalOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -88,28 +92,33 @@ const RoomCard = ({ item }) => {
                   className="w-full max-w-[570px] rounded-[20px] bg-black text-white px-8 py-12 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
                 >
                   <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-white sm:text-2xl">
-                    Your Message Sent Successfully
+                    {item.name}
                   </h3>
                   <span
                     className={`mx-auto mb-6 inline-block h-1 w-[90px] rounded bg-primary`}
                   ></span>
-                  <p className="mb-10 text-base leading-relaxed text-body-color dark:text-dark-6">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industrys
-                    standard dummy text ever since
-                  </p>
-                  <div className="-mx-3 flex flex-wrap">
+                  <div>
+                    <>
+                      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+                        <SwiperSlide>
+                          <LazyLoadImage src={item.imageURL[0]}></LazyLoadImage>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <LazyLoadImage src={item.imageURL[1]}></LazyLoadImage>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                          <LazyLoadImage src={item.imageURL[2]}></LazyLoadImage>
+                        </SwiperSlide>
+                      </Swiper>
+                    </>
+                  </div>
+                  <div className="-mx-3 text-center mt-10 ml-24 md:ml-32">
                     <div className="w-1/2 px-3">
                       <button
                         onClick={() => setModalOpen(false)}
-                        className="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white dark:text-white"
+                        className="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-white hover:bg-white hover:text-black hover:scale-105 duration-300 ease-in-out hover:font-agbalumo dark:text-white"
                       >
                         Cancel
-                      </button>
-                    </div>
-                    <div className="w-1/2 px-3">
-                      <button className="block w-full rounded-md border border-primary bg-primary p-3 text-center text-base font-medium text-white transition hover:bg-blue-dark">
-                        <a href={`/#`}> View Details </a>
                       </button>
                     </div>
                   </div>
