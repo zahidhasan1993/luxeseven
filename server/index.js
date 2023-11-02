@@ -1,13 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const port = process.env.PORT || 5000;
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
 
 require("dotenv").config();
 
 const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.8sitard.mongodb.net/?retryWrites=true&w=majority`;
-
 
 //middleware
 
@@ -28,26 +27,28 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
-    
+
     //DB Collections
 
     const database = client.db("quickcheckin");
-    const roomsCollection = database.collection('rooms');
-
-
+    const roomsCollection = database.collection("rooms");
 
     // All  API's
 
     //get API's
 
-    app.get('/rooms', async(req,res) => {
+    app.get("/rooms", async (req, res) => {
       const result = await roomsCollection.find().toArray();
 
       res.send(result);
-    })
+    });
+    app.get("/rooms/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await roomsCollection.findOne(query);
 
-
-
+      res.send(result);
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
