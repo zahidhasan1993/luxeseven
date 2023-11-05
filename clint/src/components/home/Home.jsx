@@ -7,8 +7,8 @@ import Offer from "./Offer";
 
 const Home = () => {
   const rooms = useRooms();
-  const popularRooms = rooms.slice(0,5)
-  // console.log(rooms);
+  const popularRooms = rooms.slice(0,5);
+  
   return (
     <div>
       <Banner></Banner>

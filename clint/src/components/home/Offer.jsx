@@ -46,7 +46,7 @@ const Offer = () => {
               <LazyLoadImage
                 src={img1}
                 alt=""
-                className="w-10 lg:w-14 h-10 lg:h-14"
+                className="w-10 lg:w-14 h-10 lg:h-14 hover:scale-105 duration-300 ease-out"
               />
               <dt className="ml-2 sm:hidden text-white font-semibold">
                 Couple rooms
@@ -69,7 +69,7 @@ const Offer = () => {
               <LazyLoadImage
                 src={img2}
                 alt=""
-                className="w-10 lg:w-14 h-10 lg:h-14"
+                className="w-10 lg:w-14 h-10 lg:h-14 hover:scale-105 duration-300 ease-out"
               />
               <dt className="ml-2 sm:hidden text-white font-semibold">
                 Single Rooms
@@ -92,7 +92,7 @@ const Offer = () => {
               <LazyLoadImage
                 src={img3}
                 alt=""
-                className="w-10 lg:w-14 h-10 lg:h-14"
+                className="w-10 lg:w-14 h-10 lg:h-14 hover:scale-105 duration-300 ease-out"
               />
               <dt className="ml-2 sm:hidden text-white font-semibold">
                 Friend Forever
@@ -116,7 +116,7 @@ const Offer = () => {
               <LazyLoadImage
                 src={img4}
                 alt=""
-                className="w-10 lg:w-14 h-10 lg:h-14"
+                className="w-10 lg:w-14 h-10 lg:h-14 hover:scale-105 duration-300 ease-out"
               />
               <dt className="ml-2 sm:hidden text-white font-semibold">
                 Comfortable

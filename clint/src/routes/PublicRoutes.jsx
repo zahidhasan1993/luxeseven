@@ -3,8 +3,8 @@ import Home from "../components/home/Home";
 import ErrorPage from "../components/shared/ErrorPage";
 import Main from "../layouts/Main";
 import Rooms from "../components/rooms/Rooms";
-import RoomDetails from "../components/rooms/RoomDetails";
 import axios from "axios";
+import BookingDetails from "../components/rooms/BookingDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "details/:id",
-        element: <RoomDetails></RoomDetails>,
+        element: <BookingDetails></BookingDetails>,
         loader: ({ params }) =>
           axios.get(`http://localhost:5000/rooms/${params.id}`),
       },

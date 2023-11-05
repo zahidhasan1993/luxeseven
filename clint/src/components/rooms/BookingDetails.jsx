@@ -1,7 +1,7 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useLoaderData } from "react-router-dom";
 
-const RoomDetails = () => {
+const BookingDetails = () => {
   const item = useLoaderData().data;
   console.log(item);
   return (
@@ -38,4 +38,4 @@ const RoomDetails = () => {
   );
 };
 
-export default RoomDetails;
+export default BookingDetails;
