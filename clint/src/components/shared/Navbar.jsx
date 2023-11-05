@@ -18,14 +18,14 @@ const Navbar = () => {
       {/* :DESKTOP MENU */}
       <div className="container mx-auto flex justify-between items-center py-7 px-5">
         {/* Site logo and Name */}
-        <a
-          href="#"
+        <Link
+          to="/"
           className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0"
         >
           <span className="ml-3 text-2xl text-gray-100 font-semibold antialiased font-agbalumo">
             LuxeSeven
           </span>
-        </a>
+        </Link>
         {/* Navbar */}
         <nav className="hidden md:ml-auto md:flex flex-wrap items-center justify-center text-base tracking-wide">
           {links}

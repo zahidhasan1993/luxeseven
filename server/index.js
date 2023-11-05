@@ -32,6 +32,7 @@ async function run() {
 
     const database = client.db("quickcheckin");
     const roomsCollection = database.collection("rooms");
+    const reviewCollection = database.collection("reviews");
 
     // All  API's
 
@@ -47,6 +48,10 @@ async function run() {
       const query = { _id: new ObjectId(id) };
       const result = await roomsCollection.findOne(query);
 
+      res.send(result);
+    });
+    app.get("/reviews", async (req, res) => {
+      const result = await reviewCollection.find().toArray();
       res.send(result);
     });
 
