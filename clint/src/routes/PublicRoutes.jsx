@@ -5,6 +5,7 @@ import Main from "../layouts/Main";
 import Rooms from "../components/rooms/Rooms";
 import axios from "axios";
 import BookingDetails from "../components/rooms/BookingDetails";
+import Register from "../components/authentication/Register";
 
 export const routes = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const routes = createBrowserRouter([
         path: "rooms",
         element: <Rooms></Rooms>,
       },
+
       {
         path: "details/:id",
         element: <BookingDetails></BookingDetails>,
@@ -27,5 +29,9 @@ export const routes = createBrowserRouter([
           axios.get(`http://localhost:5000/rooms/${params.id}`),
       },
     ],
+  },
+  {
+    path: "register",
+    element: <Register></Register>,
   },
 ]);
