@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Link } from "react-router-dom";
 
 const RoomCard = ({ item }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -120,7 +119,7 @@ const RoomCard = ({ item }) => {
                   <p className="my-5 text-gray-400 font-agbalumo">
                     {item.description}
                   </p>
-                  <div className="-mx-3 text-center mt-10 flex flex-wrap">
+                  <div className="-mx-3 text-center mt-10 flex justify-center">
                     <div className="w-1/2 px-3">
                       <button
                         onClick={() => setModalOpen(false)}
@@ -128,13 +127,6 @@ const RoomCard = ({ item }) => {
                       >
                         Cancel
                       </button>
-                    </div>
-                    <div className="w-1/2 px-3">
-                      <Link to={`/details/${item._id}`}>
-                        <button className="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-white hover:bg-white hover:text-black hover:scale-105 duration-300 ease-in-out hover:font-agbalumo dark:text-white">
-                          <a href={`/#`}> View Details </a>
-                        </button>
-                      </Link>
                     </div>
                   </div>
                 </div>
