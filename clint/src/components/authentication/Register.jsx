@@ -1,5 +1,24 @@
 import img from "../../assets/gallery/1.jpg";
+import useAuth from "../../customhooks/useAuth";
+import Swal from "sweetalert2";
+
 const Register = () => {
+  const { googleLogin } = useAuth();
+  // console.log(logOut);
+  const signUpGoogle = () => {
+    googleLogin()
+      .then((result) => {
+        Swal.fire({
+          title: `User ${result.user.displayName} Created`,
+          text: "Sign Up Successful",
+          icon: "success",
+        });
+        // console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="py-6">
       <div className="flex bg-white rounded-lg shadow-lg overflow-hidden w-full h-screen">
@@ -36,7 +55,10 @@ const Register = () => {
                 />
               </svg>
             </div>
-            <h1 className="px-4 py-3 w-5/6 text-center text-black font-bold hover:scale-105 duration-300 ease-linear hover:font-agbalumo">
+            <h1
+              onClick={signUpGoogle}
+              className="px-4 py-3 w-5/6 text-center text-black font-bold hover:scale-105 duration-300 ease-linear hover:font-agbalumo"
+            >
               Sign up with Google
             </h1>
           </a>
