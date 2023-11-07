@@ -6,6 +6,7 @@ import Rooms from "../components/rooms/Rooms";
 import axios from "axios";
 import BookingDetails from "../components/rooms/BookingDetails";
 import Register from "../components/authentication/Register";
+import Login from "../components/authentication/Login";
 
 export const routes = createBrowserRouter([
   {
@@ -33,5 +34,9 @@ export const routes = createBrowserRouter([
   {
     path: "register",
     element: <Register></Register>,
+  },
+  {
+    path: "login",
+    element: <Login></Login>
   },
 ]);
