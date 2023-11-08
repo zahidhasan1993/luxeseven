@@ -1,20 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/gallery/6.avif";
 import useAuth from "../../customhooks/useAuth";
 import Swal from "sweetalert2";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const { googleLogin } = useAuth();
   // console.log(logOut);
-  const signUpGoogle = () => {
+  const signInGoogle = () => {
     googleLogin()
       .then((result) => {
         Swal.fire({
-          title: `User ${result.user.displayName} Created`,
-          text: "Sign Up Successful",
+          title: `Welcome ${result.user.displayName} !!!`,
+          text: "Login Successful",
           icon: "success",
         });
         // console.log(result);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -31,7 +35,9 @@ const Login = () => {
           <h2 className="text-4xl pb-2 font-semibold font-agbalumo text-gray-700 text-center">
             LuxeSeven
           </h2>
-          <p className="text-xl text-gray-600 text-center">New to our site!</p>
+          <p className="text-xl text-gray-600 text-center">
+            Login to your account!
+          </p>
           <a
             href="#"
             className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
@@ -56,12 +62,12 @@ const Login = () => {
                 />
               </svg>
             </div>
-            <h1
-              onClick={signUpGoogle}
-              className="px-4 py-3 w-5/6 text-center text-black font-bold hover:scale-105 duration-300 ease-linear hover:font-agbalumo"
+            <button
+              onClick={signInGoogle}
+              className="px-4 py-3 w-5/6 text-center text-black font-bold  hover:font-agbalumo"
             >
               Login with Google
-            </h1>
+            </button>
           </a>
           <div className="mt-4 flex items-center justify-between">
             <span className="border-b w-1/5 lg:w-1/4"></span>
@@ -90,7 +96,7 @@ const Login = () => {
               type="password"
             />
           </div>
-          
+
           <div className="mt-8">
             <button className="bg-black text-white font-bold py-2 px-4 w-full rounded hover:bg-white hover:font-agbalumo hover:text-black hover:scale-105 duration-300 ease-linear ">
               Login

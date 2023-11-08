@@ -25,6 +25,7 @@ const Home = () => {
       <Gallery></Gallery>
       <SectionTitle title="Customers Reviews"></SectionTitle>
       <CustomerReviews></CustomerReviews>
+     
     </div>
   );
 };

@@ -7,6 +7,7 @@ import axios from "axios";
 import BookingDetails from "../components/rooms/BookingDetails";
 import Register from "../components/authentication/Register";
 import Login from "../components/authentication/Login";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -20,12 +21,20 @@ export const routes = createBrowserRouter([
       },
       {
         path: "rooms",
-        element: <Rooms></Rooms>,
+        element: (
+          <PrivateRoute>
+            <Rooms></Rooms>
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "details/:id",
-        element: <BookingDetails></BookingDetails>,
+        element: (
+          <PrivateRoute>
+            <BookingDetails></BookingDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           axios.get(`http://localhost:5000/rooms/${params.id}`),
       },
@@ -37,6 +46,6 @@ export const routes = createBrowserRouter([
   },
   {
     path: "login",
-    element: <Login></Login>
+    element: <Login></Login>,
   },
 ]);
