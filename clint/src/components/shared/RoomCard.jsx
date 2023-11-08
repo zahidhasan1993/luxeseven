@@ -44,7 +44,7 @@ const RoomCard = ({ item }) => {
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-lg">
         {/* :CARD IMAGE */}
         <LazyLoadImage
-          className="md:h-72 w-full object-cover object-center hover:scale-105 duration-300 ease-in-out"
+          className="md:h-80 w-full object-cover object-center hover:scale-105 duration-300 ease-in-out"
           src={item.imageURL[0]}
           alt="blog"
         />

@@ -9,16 +9,16 @@ const BookingDetails = () => {
       <div className="w-1/2">
         <LazyLoadImage
           src={item.imageURL[0]}
-          className="md:h-96 w-full md:col-span-2"
+          className="md:h-96 w-full md:col-span-2 hover:scale-105 duration-300 ease-in-out"
         ></LazyLoadImage>
         <div className="md:grid md:grid-cols-2 md:gap-5 my-5">
           <LazyLoadImage
             src={item.imageURL[1]}
-            className="md:h-96 w-full mb-5 md:mb-0"
+            className="md:h-96 w-full mb-5 md:mb-0 hover:scale-105 duration-300 ease-in-out"
           ></LazyLoadImage>
           <LazyLoadImage
             src={item.imageURL[2]}
-            className="md:h-96 w-full"
+            className="md:h-96 w-full hover:scale-105 duration-300 ease-in-out"
           ></LazyLoadImage>
         </div>
       </div>
@@ -28,15 +28,14 @@ const BookingDetails = () => {
         <p>Phone : {item.phone}</p>
         <p>Type : {item.type}</p>
         <p>Rent per Day : ${item.rent}</p>
-        
-       {
-        item.currentBookings.map((booking,index) => <p key={index}>
-          {booking}
-        </p>)
-       }
 
-        <button className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo">Pay</button>
+        {item.currentBookings.map((booking, index) => (
+          <p key={index}>{booking}</p>
+        ))}
 
+        <button className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo">
+          Pay
+        </button>
       </div>
     </div>
   );
