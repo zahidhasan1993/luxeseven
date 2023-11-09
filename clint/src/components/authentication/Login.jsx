@@ -2,13 +2,38 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/gallery/6.avif";
 import useAuth from "../../customhooks/useAuth";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const { googleLogin } = useAuth();
+  const { googleLogin,emailLogin } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   // console.log(logOut);
+  const onSubmit = data => {
+    console.log(data);
+    const email = data.email;
+    const pass = data.password;
+    emailLogin(email,pass)
+    .then(() => {
+      Swal.fire({
+        title: `Welcome Back !!!`,
+        text: "Login Successful",
+        icon: "success",
+      });
+      reset
+    })
+    .catch(error => {
+      console.log(error);
+    })
+
+  }
   const signInGoogle = () => {
     googleLogin()
       .then((result) => {
@@ -76,32 +101,54 @@ const Login = () => {
             </a>
             <span className="border-b w-1/5 lg:w-1/4"></span>
           </div>
-          <div className="mt-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Email Address
-            </label>
-            <input
-              className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-              type="email"
-            />
-          </div>
-          <div className="mt-4">
-            <div className="flex justify-between">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="mt-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Password
+                Email Address
               </label>
-            </div>
-            <input
-              className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-              type="password"
-            />
-          </div>
+              <input
+                className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                type="email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+                placeholder="someone@gmail.com"
+              />
 
-          <div className="mt-8">
-            <button className="bg-black text-white font-bold py-2 px-4 w-full rounded hover:bg-white hover:font-agbalumo hover:text-black hover:scale-105 duration-300 ease-linear ">
-              Login
-            </button>
-          </div>
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+            <div className="mt-4">
+              <div className="flex justify-between">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Password
+                </label>
+              </div>
+              <input
+                className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                type="password"
+                placeholder="******"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters long",
+                  },
+                })}
+              />
+
+              {errors.password && <p>{errors.password.message}</p>}
+            </div>
+
+            <div className="mt-8">
+              <button className="bg-black text-white font-bold py-2 px-4 w-full rounded hover:bg-white hover:font-agbalumo hover:text-black hover:scale-105 duration-300 ease-linear ">
+                Login
+              </button>
+            </div>
+          </form>
           <div className="mt-4 flex items-center justify-between">
             <span className="border-b w-1/5 md:w-1/4"></span>
             <Link to="/register" className="text-xs text-gray-500 uppercase">
