@@ -6,7 +6,7 @@ const BookingDetails = () => {
   console.log(item);
   return (
     <div className="my-20 md:flex md:gap-10">
-      <div className="w-1/2">
+      <div className="md:w-1/2">
         <LazyLoadImage
           src={item.imageURL[0]}
           className="md:h-96 w-full md:col-span-2 hover:scale-105 duration-300 ease-in-out"
@@ -22,7 +22,7 @@ const BookingDetails = () => {
           ></LazyLoadImage>
         </div>
       </div>
-      <div className="text-gray-600  text-2xl space-y-5 w-1/2">
+      <div className="text-gray-600  text-2xl space-y-5 md:w-1/2">
         <p className="">Name: {item.name}</p>
         <p>Max Count : {item.maxCount}</p>
         <p>Phone : {item.phone}</p>
