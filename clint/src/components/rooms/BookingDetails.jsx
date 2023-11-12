@@ -1,9 +1,12 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useLoaderData } from "react-router-dom";
+import { BookingProvider } from "../../providers/DateProvider";
+import { useContext } from "react";
 
 const BookingDetails = () => {
   const item = useLoaderData().data;
-  console.log(item);
+  const { checkIn, checkOut } = useContext(BookingProvider);
+  console.log(checkIn, checkOut);
   return (
     <div className="my-20 md:flex md:gap-10">
       <div className="md:w-1/2">
@@ -29,9 +32,8 @@ const BookingDetails = () => {
         <p>Type : {item.type}</p>
         <p>Rent per Day : ${item.rent}</p>
 
-        {item.currentBookings.map((booking, index) => (
-          <p key={index}>{booking}</p>
-        ))}
+        <p>Check In : {checkIn}</p>
+        <p>Check Out : {checkOut}</p>
 
         <button className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo">
           Pay

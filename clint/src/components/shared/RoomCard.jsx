@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const RoomCard = ({ item }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  // console.log(dates);
 
   const trigger = useRef(null);
   const modal = useRef(null);
