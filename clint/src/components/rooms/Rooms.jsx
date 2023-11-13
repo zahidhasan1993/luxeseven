@@ -1,16 +1,17 @@
-import { useContext } from "react";
 import useRooms from "../../customhooks/useRooms";
 import RoomCard from "../shared/RoomCard";
 import { DatePicker } from "antd";
 import moment from "moment";
-import { BookingProvider } from "../../providers/DateProvider";
+import { useState } from "react";
 
 const { RangePicker } = DatePicker;
 
 const Rooms = () => {
   const rooms = useRooms();
-  const { setCheckIn, setCheckOut,
-  checkIn, checkOut } = useContext(BookingProvider);
+  // const { setCheckIn, setCheckOut,
+  // checkIn, checkOut } = useContext(BookingProvider);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
 
   const filterByDate = (dates) => {
     const startDate = moment(dates[0]?.$d).format("DD-MM-YYYY");
@@ -19,7 +20,7 @@ const Rooms = () => {
     setCheckOut(endDate);
   };
 
-  console.log(checkIn,checkOut);
+  console.log(checkIn, checkOut);
   return (
     <div className="my-20">
       <div className="md:p-10">
@@ -31,7 +32,12 @@ const Rooms = () => {
       </div>
       <div>
         {rooms.map((room) => (
-          <RoomCard key={room._id} item={room}></RoomCard>
+          <RoomCard
+            key={room._id}
+            item={room}
+            checkIn={checkIn}
+            checkOut={checkOut}
+          ></RoomCard>
         ))}
       </div>
     </div>

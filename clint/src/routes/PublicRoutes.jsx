@@ -29,7 +29,7 @@ export const routes = createBrowserRouter([
       },
 
       {
-        path: "details/:id",
+        path: "details/:id/:checkIn/:checkOut",
         element: (
           <PrivateRoute>
             <BookingDetails></BookingDetails>

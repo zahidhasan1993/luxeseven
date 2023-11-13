@@ -1,13 +1,12 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useLoaderData } from "react-router-dom";
-import { BookingProvider } from "../../providers/DateProvider";
-import { useContext } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 import moment from "moment";
 
 const BookingDetails = () => {
   const item = useLoaderData().data;
-  const { checkIn, checkOut } = useContext(BookingProvider);
-  // console.log(item);
+  
+  const { checkIn, checkOut } = useParams();
+  console.log(checkIn, checkOut);
 
   const startMoment = moment(checkIn, "DD-MM-YYYY");
   const endMoment = moment(checkOut, "DD-MM-YYYY");
