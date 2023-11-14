@@ -25,13 +25,13 @@ const Navbar = () => {
 
   const links = user ? (
     <>
-      <Link to="/rooms" className="mr-8 hover:text-gray-300">
+      <Link to="/rooms" className="mr-8 hover:text-gray-300 hover:font-agbalumo">
         Rooms
       </Link>
-      <button className="mr-8 hover:text-gray-300" onClick={signOut}>
+      <button className="mr-8 hover:text-gray-300 hover:font-agbalumo" onClick={signOut}>
         Logout
       </button>
-      {showName ? <p className="pr-3">{user.displayName}</p> : <></>}
+      {showName ? <p className="pr-3 font-agbalumo">{user.displayName}</p> : <></>}
       <div
         className="hidden sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer"
         onMouseEnter={onMouseEnter}
@@ -55,10 +55,10 @@ const Navbar = () => {
     </>
   ) : (
     <>
-      <Link to="/rooms" className="mr-8 hover:text-gray-300">
+      <Link to="/rooms" className="mr-8 hover:text-gray-300 hover:font-agbalumo">
         Rooms
       </Link>
-      <Link to="/login" className="mr-8 hover:text-gray-300">
+      <Link to="/login" className="mr-8 hover:text-gray-300 hover:font-agbalumo">
         Login
       </Link>
     </>
