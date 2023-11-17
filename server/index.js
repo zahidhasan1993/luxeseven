@@ -33,6 +33,7 @@ async function run() {
     const database = client.db("quickcheckin");
     const roomsCollection = database.collection("rooms");
     const reviewCollection = database.collection("reviews");
+    const bookingCollection = database.collection("bookings")
 
     // All  API's
 
@@ -53,7 +54,17 @@ async function run() {
     app.get("/reviews", async (req, res) => {
       const result = await reviewCollection.find().toArray();
       res.send(result);
+      
     });
+
+    //post apis
+    app.post("/bookings", async (req,res) => {
+      const body = req.body;
+      body.status = 'pending';
+      const result = await bookingCollection.insertOne(body);
+      console.log(body);
+      res.send(result)
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
