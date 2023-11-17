@@ -1,17 +1,49 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useLoaderData, useParams } from "react-router-dom";
 import moment from "moment";
+import axios from "axios";
+import { toast } from "react-toastify";
+import useAuth from "../../customhooks/useAuth";
 
 const BookingDetails = () => {
   const item = useLoaderData().data;
-  
+  const { user } = useAuth();
   const { checkIn, checkOut } = useParams();
-  console.log(checkIn, checkOut);
 
   const startMoment = moment(checkIn, "DD-MM-YYYY");
   const endMoment = moment(checkOut, "DD-MM-YYYY");
   const differenceInDays = endMoment.diff(startMoment, "days");
   const totalRent = differenceInDays * item.rent;
+
+  const confirmPay = () => {
+    const data = {
+      room: item.name,
+      roomID: item._id,
+      userEmail: user.email,
+      checkIn,
+      checkOut,
+      cost: totalRent,
+      totalDays: differenceInDays,
+      transectionID: "1234",
+    };
+
+    axios.post("http://localhost:5000/bookings", data).then((data) => {
+      if (data.data.acknowledged) {
+        toast.success("😇 Booking Successful!!!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        console.log(data.data);
+      }
+    });
+  };
+
   return (
     <div className="my-20 md:flex md:gap-10">
       <div className="md:w-1/2">
@@ -59,7 +91,10 @@ const BookingDetails = () => {
         <p className="font-agbalumo">
           Total Amount: <span className="font-serif">${totalRent}</span>
         </p>
-        <button className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo">
+        <button
+          onClick={confirmPay}
+          className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo"
+        >
           Pay
         </button>
       </div>
