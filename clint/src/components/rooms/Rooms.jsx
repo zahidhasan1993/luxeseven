@@ -23,11 +23,11 @@ const Rooms = () => {
   console.log(checkIn, checkOut);
   return (
     <div className="my-20">
-      <div className="md:p-10">
+      <div className="md:p-10 mb-10">
         <RangePicker
           format="DD-MM-YYYY"
           onChange={filterByDate}
-          className="border border-black h-12"
+          className="border border-black h-12 w-full"
         />
       </div>
       <div>

@@ -33,7 +33,7 @@ async function run() {
     const database = client.db("quickcheckin");
     const roomsCollection = database.collection("rooms");
     const reviewCollection = database.collection("reviews");
-    const bookingCollection = database.collection("bookings")
+    const bookingCollection = database.collection("bookings");
 
     // All  API's
 
@@ -54,17 +54,28 @@ async function run() {
     app.get("/reviews", async (req, res) => {
       const result = await reviewCollection.find().toArray();
       res.send(result);
-      
     });
 
     //post apis
-    app.post("/bookings", async (req,res) => {
+    app.post("/bookings", async (req, res) => {
       const body = req.body;
-      body.status = 'pending';
+      const checkIn = body.checkIn;
+      const checkOut = body.checkOut;
+      const id = body.roomID;
+      const query = { _id: new ObjectId(id) };
+      body.status = "pending";
+      const updateResult = await roomsCollection.updateOne(
+        query,
+        {
+          $set: {
+            currentBookings: { checkIn, checkOut },
+          },
+        }
+      );
       const result = await bookingCollection.insertOne(body);
-      console.log(body);
-      res.send(result)
-    })
+      // console.log(roomDetails);
+      res.send(result);
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

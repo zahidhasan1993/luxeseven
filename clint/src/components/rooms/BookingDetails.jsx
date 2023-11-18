@@ -9,7 +9,6 @@ const BookingDetails = () => {
   const item = useLoaderData().data;
   const { user } = useAuth();
   const { checkIn, checkOut } = useParams();
-
   const startMoment = moment(checkIn, "DD-MM-YYYY");
   const endMoment = moment(checkOut, "DD-MM-YYYY");
   const differenceInDays = endMoment.diff(startMoment, "days");
