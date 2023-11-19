@@ -4,6 +4,7 @@ import moment from "moment";
 import axios from "axios";
 import { toast } from "react-toastify";
 import useAuth from "../../customhooks/useAuth";
+import { useEffect } from "react";
 
 const BookingDetails = () => {
   const item = useLoaderData().data;
@@ -13,7 +14,9 @@ const BookingDetails = () => {
   const endMoment = moment(checkOut, "DD-MM-YYYY");
   const differenceInDays = endMoment.diff(startMoment, "days");
   const totalRent = differenceInDays * item.rent;
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const confirmPay = () => {
     const data = {
       room: item.name,

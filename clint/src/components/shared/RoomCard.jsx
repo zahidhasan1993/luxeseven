@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const RoomCard = ({ item, checkIn, checkOut }) => {
   const [modalOpen, setModalOpen] = useState(false);
   // console.log(dates);
-
+ 
   const trigger = useRef(null);
   const modal = useRef(null);
 
@@ -38,6 +38,7 @@ const RoomCard = ({ item, checkIn, checkOut }) => {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
+
   return (
     <div className="mb-4 p-0 sm:p-4 md:w-full">
       {" "}
@@ -45,7 +46,7 @@ const RoomCard = ({ item, checkIn, checkOut }) => {
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-lg">
         {/* :CARD IMAGE */}
         <LazyLoadImage
-          className="md:h-80 w-full object-cover object-center hover:scale-105 duration-300 ease-in-out"
+          className="md:h-96 w-full object-cover object-center hover:scale-105 duration-300 ease-in-out"
           src={item.imageURL[0]}
           alt="blog"
         />

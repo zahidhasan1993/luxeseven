@@ -10,17 +10,34 @@ const Rooms = () => {
   const rooms = useRooms();
   // const { setCheckIn, setCheckOut,
   // checkIn, checkOut } = useContext(BookingProvider);
+
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
+  const [newRooms, setNewRooms] = useState([]);
+  let fakeRooms = [...rooms];
 
   const filterByDate = (dates) => {
-    const startDate = moment(dates[0]?.$d).format("DD-MM-YYYY");
-    const endDate = moment(dates[1]?.$d).format("DD-MM-YYYY");
+    const startDate = moment(dates[0]?.$d, "DD-MM-YYYY");
+    const endDate = moment(dates[1]?.$d, "DD-MM-YYYY");
     setCheckIn(startDate);
     setCheckOut(endDate);
+    const remainingRooms = fakeRooms.filter(
+      (rRoom) =>
+        !(
+          moment(rRoom?.currentBooking?.checkIn, "DD-MM-YYYY").isBetween(
+            startDate,
+            endDate
+          ) ||
+          moment(rRoom?.currentBooking?.checkOut, "DD-MM-YYYY").isBetween(
+            startDate,
+            endDate
+          )
+        )
+    );
+    console.log(remainingRooms);
+    setNewRooms(remainingRooms)
   };
 
-  console.log(checkIn, checkOut);
   return (
     <div className="my-20">
       <div className="md:p-10 mb-10">
@@ -31,14 +48,24 @@ const Rooms = () => {
         />
       </div>
       <div>
-        {rooms.map((room) => (
-          <RoomCard
-            key={room._id}
-            item={room}
-            checkIn={checkIn}
-            checkOut={checkOut}
-          ></RoomCard>
-        ))}
+        {}
+        {
+          newRooms.length === 0 ? rooms.map((room) => (
+            <RoomCard
+              key={room._id}
+              item={room}
+              checkIn={checkIn}
+              checkOut={checkOut}
+            ></RoomCard>
+          )) : newRooms.map((room) => (
+            <RoomCard
+              key={room._id}
+              item={room}
+              checkIn={checkIn}
+              checkOut={checkOut}
+            ></RoomCard>
+          ))
+        }
       </div>
     </div>
   );

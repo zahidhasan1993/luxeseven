@@ -64,14 +64,15 @@ async function run() {
       const id = body.roomID;
       const query = { _id: new ObjectId(id) };
       body.status = "pending";
-      const updateResult = await roomsCollection.updateOne(
-        query,
-        {
-          $set: {
-            currentBookings: { checkIn, checkOut },
+      await roomsCollection.updateOne(query, {
+        $set: {
+          currentBooking: {
+            checkIn: checkIn,
+            checkOut: checkOut,
+            userEmail: body.userEmail,
           },
-        }
-      );
+        },
+      });
       const result = await bookingCollection.insertOne(body);
       // console.log(roomDetails);
       res.send(result);
