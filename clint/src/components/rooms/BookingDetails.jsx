@@ -17,6 +17,7 @@ const BookingDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  console.log(startMoment._i);
   const confirmPay = () => {
     const data = {
       room: item.name,

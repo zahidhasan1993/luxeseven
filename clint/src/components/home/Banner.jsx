@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img from "../../assets/1.jpg";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -21,12 +22,12 @@ const Banner = () => {
               </p>
             </div>
             <div className="flex flex-col items-center justify-center max-w-lg gap-3 mx-auto mt-10 lg:flex-row lg:justify-start">
-              <a
-                href="#"
+              <Link
+                to='/rooms'
                 className="items-center justify-center w-full px-6 py-2.5  text-center text-white bg-black border-2 border-black rounded-full inline-flex hover:bg-transparent hover:border-black hover:text-black hover:font-agbalumo hover:scale-110 duration-300 ease-in-out focus:outline-none lg:w-auto focus-visible:outline-black text-sm focus-visible:ring-black"
               >
                 Visit Rooms
-              </a>
+              </Link>
               <a
                 href="#"
                 className="inline-flex items-center justify-center text-sm font-semibold text-black duration-200 hover:text-blue-500 focus:outline-none focus-visible:outline-gray-600"

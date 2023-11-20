@@ -34,9 +34,15 @@ const Rooms = () => {
           )
         )
     );
-    console.log(remainingRooms);
-    setNewRooms(remainingRooms)
+    console.log(dates[0]);
+    setNewRooms(remainingRooms);
+    const forCheckIn = moment(dates[0]?.$d).format("DD-MM-YYYY");
+
+    const forCheckOut = moment(dates[1]?.$d).format("DD-MM-YYYY");
+    setCheckIn(forCheckIn);
+    setCheckOut(forCheckOut);
   };
+  // console.log(checkIn,checkOut);
 
   return (
     <div className="my-20">
@@ -49,23 +55,23 @@ const Rooms = () => {
       </div>
       <div>
         {}
-        {
-          newRooms.length === 0 ? rooms.map((room) => (
-            <RoomCard
-              key={room._id}
-              item={room}
-              checkIn={checkIn}
-              checkOut={checkOut}
-            ></RoomCard>
-          )) : newRooms.map((room) => (
-            <RoomCard
-              key={room._id}
-              item={room}
-              checkIn={checkIn}
-              checkOut={checkOut}
-            ></RoomCard>
-          ))
-        }
+        {newRooms.length === 0
+          ? rooms.map((room) => (
+              <RoomCard
+                key={room._id}
+                item={room}
+                checkIn={checkIn}
+                checkOut={checkOut}
+              ></RoomCard>
+            ))
+          : newRooms.map((room) => (
+              <RoomCard
+                key={room._id}
+                item={room}
+                checkIn={checkIn}
+                checkOut={checkOut}
+              ></RoomCard>
+            ))}
       </div>
     </div>
   );
