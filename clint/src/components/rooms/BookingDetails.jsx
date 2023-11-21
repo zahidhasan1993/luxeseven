@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import useAuth from "../../customhooks/useAuth";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const BookingDetails = () => {
   const item = useLoaderData().data;
@@ -30,19 +31,31 @@ const BookingDetails = () => {
       transectionID: "1234",
     };
 
-    axios.post("http://localhost:5000/bookings", data).then((data) => {
-      if (data.data.acknowledged) {
-        toast.success("😇 Booking Successful!!!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#00000",
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.post("http://localhost:5000/bookings", data).then((data) => {
+          if (data.data.acknowledged) {
+            toast.success("😇 Booking Successful!!!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+            console.log(data.data);
+          }
         });
-        console.log(data.data);
       }
     });
   };
