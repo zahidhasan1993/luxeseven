@@ -78,7 +78,7 @@ const BookingDetails = () => {
           ></LazyLoadImage>
         </div>
       </div>
-      <div className="text-gray-600  text-2xl space-y-5 md:w-1/2">
+      <div className="p-20 md:p-0 text-gray-600  text-2xl space-y-5 md:w-1/2">
         <p className="font-agbalumo">
           Name: <span className="font-serif">{item.name}</span>
         </p>
@@ -99,7 +99,7 @@ const BookingDetails = () => {
         </p>
         <hr className="divide-y divide-black" />
         <p className="font-agbalumo">
-          Rent Per Day: <span className="font-serif">{item.rent}</span>
+          Rent Per Day: <span className="font-serif">${item.rent}</span>
         </p>
         <p className="font-agbalumo">
           Total Days: <span className="font-serif">{differenceInDays}</span>
@@ -109,7 +109,7 @@ const BookingDetails = () => {
         </p>
         <button
           onClick={confirmPay}
-          className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo"
+          className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo hover:shadow-2xl hover:border hover:border-black rounded-md"
         >
           Pay
         </button>
