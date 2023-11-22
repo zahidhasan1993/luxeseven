@@ -63,7 +63,7 @@ async function run() {
       const paramEmail = req.params.email;
       // console.log(paramEmail);
       const query = { userEmail: paramEmail };
-      const result = await bookingCollection.findOne(query);
+      const result = await bookingCollection.find(query).toArray();
       res.send(result);
     });
     //post apis
@@ -73,7 +73,7 @@ async function run() {
       const checkOut = body.checkOut;
       const id = body.roomID;
       const query = { _id: new ObjectId(id) };
-      body.status = "pending";
+      body.status = "Booked";
       await roomsCollection.updateOne(query, {
         $set: {
           currentBooking: {
@@ -87,7 +87,21 @@ async function run() {
       // console.log(roomDetails);
       res.send(result);
     });
+    app.post("/cencelBooking", async (req, res) => {
+      const bookingId = req.body.bId;
+      const roomId = req.body.rId;
+      const roomQuery = { _id: new ObjectId(roomId) };
+      const bookingQuery = { _id: new ObjectId(bookingId) };
 
+      const updatedBooking = await bookingCollection.updateOne(bookingQuery, {
+        $set: { status: "canceled" },
+      });
+      const room = await roomsCollection.updateOne(roomQuery, {
+        $set: { currentBooking: "" },
+      });
+      res.send({ updatedBooking, room });
+      // console.log(booking);
+    });
     //Payments
     app.post("/create-payment", async (req, res) => {
       const { amount, token } = req.body;
@@ -119,7 +133,7 @@ run().catch(console.dir);
 //checking connections
 
 app.get("/", (req, res) => {
-  res.send("WELCOME TO QUICKCHECKIN SERVER");
+  res.send("WELCOME TO LUXESEVEN SERVER");
 });
 
 app.listen(port, () => {
