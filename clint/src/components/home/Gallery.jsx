@@ -17,52 +17,52 @@ const Gallery = () => {
         <LazyLoadImage
           src={gallery1}
           alt="Gallery Image"
-          className="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-3 md:row-start-1 dark:bg-gray-500 aspect-square"
+          className="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-3 md:row-start-1 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery2}
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery3}
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery4}
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery5}
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery6}
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery7}
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery8}
         />
         <LazyLoadImage
           alt="Gallery Image"
-          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square"
+          className="w-full h-full rounded shadow-sm min-h-48 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
           src={gallery9}
         />
         <LazyLoadImage
           src={gallery10}
           alt="Gallery Image"
-          className="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-1 md:row-start-3 dark:bg-gray-500 aspect-square"
+          className="w-full h-full col-span-2 row-span-2 rounded shadow-sm min-h-96 md:col-start-1 md:row-start-3 dark:bg-gray-500 aspect-square hover:scale-105 duration-300 ease-linear"
         />
       </div>
     </section>
