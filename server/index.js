@@ -3,8 +3,12 @@ const cors = require("cors");
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const app = express();
+const stripe = require("stripe")(
+  "sk_test_51NytlXKsB0yZWTQ82srD8btsmFeQXxFo5WA6Gj775PqWjM09Sb2PXBPTyFoAzBqa3aY01T0GEvIgg4qkl08ZtwSJ00lTyu3GSA"
+);
 
 require("dotenv").config();
+// console.log(process.env.STRIPE_KEY);
 
 const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.8sitard.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -78,6 +82,22 @@ async function run() {
       res.send(result);
     });
 
+    //Payments
+    app.post("/create-payment", async (req, res) => {
+      const { amount, token } = req.body;
+      try {
+        const charge = await stripe.charges.create({
+          amount,
+          currency: "usd",
+          source: token.id, // token received from the frontend
+          description: "Product Purchase",
+        });
+        res.send({ success: true, charge });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: "Payment failed" });
+      }
+    });
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(

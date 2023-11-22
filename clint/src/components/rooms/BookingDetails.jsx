@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import useAuth from "../../customhooks/useAuth";
 import { useEffect } from "react";
-import Swal from "sweetalert2";
+import StripeCheckout from "react-stripe-checkout";
 
 const BookingDetails = () => {
   const item = useLoaderData().data;
@@ -15,11 +15,13 @@ const BookingDetails = () => {
   const endMoment = moment(checkOut, "DD-MM-YYYY");
   const differenceInDays = endMoment.diff(startMoment, "days");
   const totalRent = differenceInDays * item.rent;
+  const stripeKey = import.meta.env.VITE_STRIPE_KEY;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  console.log(startMoment._i);
-  const confirmPay = () => {
+  // console.log(startMoment._i);
+  const handleToken = (token) => {
+    console.log(token);
     const data = {
       room: item.name,
       roomID: item._id,
@@ -30,32 +32,28 @@ const BookingDetails = () => {
       totalDays: differenceInDays,
       transectionID: "1234",
     };
-
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#000000",
-      cancelButtonColor: "#00000",
-      confirmButtonText: "Confirm",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios.post("http://localhost:5000/bookings", data).then((data) => {
-          if (data.data.acknowledged) {
-            toast.success("😇 Booking Successful!!!", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-            });
-            console.log(data.data);
-          }
+    const paymentData = {
+      token,
+      amount: totalRent * 100,
+    };
+    axios
+      .post("http://localhost:5000/create-payment", paymentData)
+      .then((data) => {
+        console.log(data);
+      });
+    axios.post("http://localhost:5000/bookings", data).then((data) => {
+      if (data.data.acknowledged) {
+        toast.success("😇 Booking Successful!!!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
         });
+        console.log(data.data);
       }
     });
   };
@@ -107,12 +105,16 @@ const BookingDetails = () => {
         <p className="font-agbalumo">
           Total Amount: <span className="font-serif">${totalRent}</span>
         </p>
-        <button
-          onClick={confirmPay}
-          className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo hover:shadow-2xl hover:border hover:border-black rounded-md"
+        <StripeCheckout
+          token={handleToken}
+          stripeKey={stripeKey}
+          amount={totalRent * 100} // amount in cents
+          name={item.name}
         >
-          Pay
-        </button>
+          <button className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo hover:shadow-2xl hover:border hover:border-black rounded-md mt-10">
+            Pay
+          </button>
+        </StripeCheckout>
       </div>
     </div>
   );
