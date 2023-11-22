@@ -84,12 +84,20 @@ const UserDash = () => {
                       <span className="text-lg "> {booking.checkOut}</span>
                     </h1>
                     <h1 className="pb-8">Status : {booking.status}</h1>
-                    <button
+                    {
+                        booking.status === 'canceled' ? <button
+                        onClick={() => cancelBooking(booking._id, booking.roomID)}
+                        className="bg-gray-500 py-2 w-full text-white  rounded-md"
+                        disabled
+                      >
+                        Cancel Booking
+                      </button> : <button
                       onClick={() => cancelBooking(booking._id, booking.roomID)}
                       className="bg-black py-2 w-full text-white hover:scale-105 duration-300 ease-linear hover:bg-white hover:text-black hover:font-agbalumo hover:shadow-2xl hover:border hover:border-black rounded-md"
                     >
                       Cancel Booking
                     </button>
+                    }
                   </div>
                 </div>
               ))}
