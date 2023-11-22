@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     emailSignUp,
     emailLogin,
+    setLoader,
     logOut
   };
 

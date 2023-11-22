@@ -1,21 +1,22 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import useAuth from "../../customhooks/useAuth";
 import { useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 
 const BookingDetails = () => {
   const item = useLoaderData().data;
-  const { user } = useAuth();
+  const { user, setLoader } = useAuth();
   const { checkIn, checkOut } = useParams();
   const startMoment = moment(checkIn, "DD-MM-YYYY");
   const endMoment = moment(checkOut, "DD-MM-YYYY");
   const differenceInDays = endMoment.diff(startMoment, "days");
   const totalRent = differenceInDays * item.rent;
   const stripeKey = import.meta.env.VITE_STRIPE_KEY;
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -27,10 +28,11 @@ const BookingDetails = () => {
       token,
       amount: totalRent * 100,
     };
+    setLoader(true);
     axios
       .post("http://localhost:5000/create-payment", paymentData)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.data) {
           const value = {
             room: item.name,
@@ -44,20 +46,26 @@ const BookingDetails = () => {
           };
           axios.post("http://localhost:5000/bookings", value).then((data) => {
             if (data.data.acknowledged) {
-              toast.success("😇 Booking Successful!!!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
+              Swal.fire({
+                icon: "success",
+                title: "Yay!!",
+                text: "Room Booked Successful!",
+              }).then(() => {
+                navigate('/')
               });
-              console.log(data.data);
+              setLoader(false);
+              // console.log(data.data);
+            } else {
+              setLoader(false);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+              })
+              
             }
           });
-          console.log(data.data.charge);
+          // console.log(data.data.charge);
         }
       });
   };
