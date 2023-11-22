@@ -8,6 +8,7 @@ import BookingDetails from "../components/rooms/BookingDetails";
 import Register from "../components/authentication/Register";
 import Login from "../components/authentication/Login";
 import PrivateRoute from "./PrivateRoute";
+import UserDash from "../components/dashboard/UserDash";
 
 export const routes = createBrowserRouter([
   {
@@ -37,6 +38,14 @@ export const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           axios.get(`http://localhost:5000/rooms/${params.id}`),
+      },
+      {
+        path: "dashboard",
+        element: (
+          <PrivateRoute>
+            <UserDash></UserDash>
+          </PrivateRoute>
+        ),
       },
     ],
   },

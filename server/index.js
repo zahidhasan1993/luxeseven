@@ -59,7 +59,13 @@ async function run() {
       const result = await reviewCollection.find().toArray();
       res.send(result);
     });
-
+    app.get("/bookings/:email", async (req, res) => {
+      const paramEmail = req.params.email;
+      // console.log(paramEmail);
+      const query = { userEmail: paramEmail };
+      const result = await bookingCollection.findOne(query);
+      res.send(result);
+    });
     //post apis
     app.post("/bookings", async (req, res) => {
       const body = req.body;
