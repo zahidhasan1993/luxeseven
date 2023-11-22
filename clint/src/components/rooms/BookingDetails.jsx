@@ -21,17 +21,8 @@ const BookingDetails = () => {
   }, []);
   // console.log(startMoment._i);
   const handleToken = (token) => {
-    console.log(token);
-    const data = {
-      room: item.name,
-      roomID: item._id,
-      userEmail: user.email,
-      checkIn,
-      checkOut,
-      cost: totalRent,
-      totalDays: differenceInDays,
-      transectionID: "1234",
-    };
+    // console.log(token);
+
     const paymentData = {
       token,
       amount: totalRent * 100,
@@ -40,22 +31,35 @@ const BookingDetails = () => {
       .post("http://localhost:5000/create-payment", paymentData)
       .then((data) => {
         console.log(data);
+        if (data.data) {
+          const value = {
+            room: item.name,
+            roomID: item._id,
+            userEmail: user.email,
+            checkIn,
+            checkOut,
+            cost: totalRent,
+            totalDays: differenceInDays,
+            transectionID: data.data.charge.id,
+          };
+          axios.post("http://localhost:5000/bookings", value).then((data) => {
+            if (data.data.acknowledged) {
+              toast.success("😇 Booking Successful!!!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              });
+              console.log(data.data);
+            }
+          });
+          console.log(data.data.charge);
+        }
       });
-    axios.post("http://localhost:5000/bookings", data).then((data) => {
-      if (data.data.acknowledged) {
-        toast.success("😇 Booking Successful!!!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-        console.log(data.data);
-      }
-    });
   };
 
   return (
