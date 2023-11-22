@@ -42,7 +42,7 @@ const Rooms = () => {
     setCheckIn(forCheckIn);
     setCheckOut(forCheckOut);
   };
-  // console.log(checkIn,checkOut);
+  console.log(fakeRooms);
 
   const filterByType = (e) => {
     const type = e.target.value;
