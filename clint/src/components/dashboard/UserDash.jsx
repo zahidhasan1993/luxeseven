@@ -16,7 +16,7 @@ const UserDash = () => {
       setBookings(data.data);
     });
   }, [setBookings, user.email,reset]);
-  console.log(bookings);
+  // console.log(bookings);
   const cancelBooking = (bId, rId) => {
     console.log(rId, bId);
     Swal.fire({

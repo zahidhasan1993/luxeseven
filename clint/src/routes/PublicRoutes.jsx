@@ -9,6 +9,7 @@ import Register from "../components/authentication/Register";
 import Login from "../components/authentication/Login";
 import PrivateRoute from "./PrivateRoute";
 import UserDash from "../components/dashboard/UserDash";
+import AdminDash from "../components/dashboard/AdminDash";
 
 export const routes = createBrowserRouter([
   {
@@ -40,13 +41,21 @@ export const routes = createBrowserRouter([
           axios.get(`http://localhost:5000/rooms/${params.id}`),
       },
       {
-        path: "dashboard",
+        path: "dashboard/user",
         element: (
           <PrivateRoute>
             <UserDash></UserDash>
           </PrivateRoute>
         ),
       },
+      {
+        path: 'dashboard/admin',
+        element: (
+          <PrivateRoute>
+            <AdminDash></AdminDash>
+          </PrivateRoute>
+        ) 
+      }
     ],
   },
   {

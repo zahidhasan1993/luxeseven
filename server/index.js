@@ -38,6 +38,7 @@ async function run() {
     const roomsCollection = database.collection("rooms");
     const reviewCollection = database.collection("reviews");
     const bookingCollection = database.collection("bookings");
+    const userCollection = database.collection("users");
 
     // All  API's
 
@@ -48,6 +49,7 @@ async function run() {
 
       res.send(result);
     });
+    // app.get("")
     app.get("/rooms/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -66,7 +68,28 @@ async function run() {
       const result = await bookingCollection.find(query).toArray();
       res.send(result);
     });
+    app.get("/users", async (req, res) => {
+      const result = await userCollection.find().toArray();
+      res.send(result);
+    });
+    app.get("/bookings", async (req, res) => {
+      const result = await bookingCollection.find().toArray();
+      res.send(result);
+    });
     //post apis
+    app.post("/users", async (req, res) => {
+      const body = req.body;
+      const email = body.userEmail;
+      const query = { userEmail: email };
+      const existingUser = await userCollection.findOne(query);
+      if (!existingUser) {
+        const result = await userCollection.insertOne(body);
+        res.send(result);
+      } else {
+        res.send("User Already Exists");
+      }
+    });
+
     app.post("/bookings", async (req, res) => {
       const body = req.body;
       const checkIn = body.checkIn;

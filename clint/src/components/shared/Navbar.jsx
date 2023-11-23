@@ -32,7 +32,7 @@ const Navbar = () => {
       </button>
 
       <div className="hidden sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer">
-        <Link to='/dashboard'>
+        <Link to={user.role === 'admin' ? 'dashboard/admin' : 'dashboard/user'}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-8 w-8"

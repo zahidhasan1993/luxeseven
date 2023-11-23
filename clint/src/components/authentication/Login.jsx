@@ -3,12 +3,13 @@ import img from "../../assets/gallery/6.avif";
 import useAuth from "../../customhooks/useAuth";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const { googleLogin,emailLogin } = useAuth();
+  const { googleLogin, emailLogin } = useAuth();
   const {
     register,
     handleSubmit,
@@ -16,27 +17,40 @@ const Login = () => {
     reset,
   } = useForm();
   // console.log(logOut);
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log(data);
     const email = data.email;
     const pass = data.password;
-    emailLogin(email,pass)
-    .then(() => {
-      Swal.fire({
-        title: `Welcome Back !!!`,
-        text: "Login Successful",
-        icon: "success",
+    emailLogin(email, pass)
+      .then(() => {
+        Swal.fire({
+          title: `Welcome Back !!!`,
+          text: "Login Successful",
+          icon: "success",
+        });
+        // console.log(result);
+        reset;
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      reset
-    })
-    .catch(error => {
-      console.log(error);
-    })
-
-  }
+  };
   const signInGoogle = () => {
     googleLogin()
       .then((result) => {
+        console.log(result.user);
+        if (result.user) {
+          axios
+            .post("http://localhost:5000/users", {
+              userName: result.user.displayName,
+              userEmail: result.user.email,
+            })
+            .then((data) => {
+              console.log(data.data);
+            });
+        } else {
+          console.log("something went wrong");
+        }
         Swal.fire({
           title: `Welcome ${result.user.displayName} !!!`,
           text: "Login Successful",
