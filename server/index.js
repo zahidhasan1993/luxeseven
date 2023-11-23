@@ -77,12 +77,12 @@ async function run() {
       res.send(result);
     });
     //post apis
-    app.post('/addroom', async(req,res) => {
+    app.post("/addroom", async (req, res) => {
       const body = req.body;
       // console.log(body);
       const result = await roomsCollection.insertOne(body);
-      res.send(result)
-    })
+      res.send(result);
+    });
     app.post("/users", async (req, res) => {
       const body = req.body;
       const email = body.userEmail;
@@ -146,6 +146,17 @@ async function run() {
         console.error(error);
         res.status(500).json({ success: false, error: "Payment failed" });
       }
+    });
+    app.post("/makeadmin/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "admin",
+        },
+      };
+      const result = await userCollection.updateOne(filter, updateDoc);
+      res.send(result);
     });
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

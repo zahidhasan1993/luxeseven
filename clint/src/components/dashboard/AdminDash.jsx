@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useRooms from "../../customhooks/useRooms";
 import AddRoom from "./AddRoom";
+import Swal from "sweetalert2";
 
 const AdminDash = () => {
   const [users, setUsers] = useState([]);
@@ -20,6 +21,20 @@ const AdminDash = () => {
     });
   }, []);
   //   console.log(users);
+  const makeAdmin = (id) => {
+    console.log(id);
+    axios.post(`http://localhost:5000/makeadmin/${id}`)
+    .then(data => {
+        console.log(data);
+        if (data.data.acknowledged) {
+            Swal.fire({
+                title: 'Admin Added',
+                text: "Admin Added Successful",
+                icon: "success",
+              });
+        }
+    })
+  };
   return (
     <div className="my-20 text-xl">
       <Tabs>
@@ -51,7 +66,7 @@ const AdminDash = () => {
             <div className="my-10 md:grid md:grid-cols-3 md:gap-3">
               {users.map((singleUser) => (
                 <div key={singleUser._id} className="mb-10 md:mb-0">
-                  <div className="flex items-center relative p-4 w-full bg-white rounded-lg overflow-hidden shadow-2xl hover:shadow">
+                  <div className="flex items-center gap-5 relative p-4 w-full bg-white rounded-lg overflow-hidden shadow-2xl hover:shadow">
                     <div className="w-12 h-12 rounded-full bg-gray-100"></div>
                     <div className="ml-3">
                       <p className="font-medium text-gray-800">
@@ -61,6 +76,12 @@ const AdminDash = () => {
                         {singleUser.userEmail}
                       </p>
                     </div>
+                    <button
+                      onClick={() => makeAdmin(singleUser._id)}
+                      className="my-5 text-sm py-2 px-4 bg-black text-white rounded-xl"
+                    >
+                      Make Admin
+                    </button>
                   </div>
                 </div>
               ))}
