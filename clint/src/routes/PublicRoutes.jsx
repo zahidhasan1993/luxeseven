@@ -10,6 +10,7 @@ import Login from "../components/authentication/Login";
 import PrivateRoute from "./PrivateRoute";
 import UserDash from "../components/dashboard/UserDash";
 import AdminDash from "../components/dashboard/AdminDash";
+import AdminRoute from "./AdminRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -49,13 +50,13 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: 'dashboard/admin',
+        path: "dashboard/admin",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <AdminDash></AdminDash>
-          </PrivateRoute>
-        ) 
-      }
+          </AdminRoute>
+        ),
+      },
     ],
   },
   {

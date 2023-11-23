@@ -76,6 +76,13 @@ async function run() {
       const result = await bookingCollection.find().toArray();
       res.send(result);
     });
+    app.get('/users/:email', async (req,res) => {
+      const email = req.params.email;
+      const query = {userEmail : email};
+      const result = await userCollection.findOne(query);
+
+      res.send(result);
+     })
     //post apis
     app.post("/addroom", async (req, res) => {
       const body = req.body;
@@ -147,9 +154,9 @@ async function run() {
         res.status(500).json({ success: false, error: "Payment failed" });
       }
     });
-    app.post("/makeadmin/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
+    app.post("/makeadmin/:email", async (req, res) => {
+      const email = req.params.email;
+      const filter = { userEmail: email };
       const updateDoc = {
         $set: {
           role: "admin",

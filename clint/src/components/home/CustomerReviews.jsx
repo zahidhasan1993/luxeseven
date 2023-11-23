@@ -9,7 +9,7 @@ const CustomerReviews = () => {
       // console.log(data);
     });
   }, []);
-  console.log(people);
+  // console.log(people);
   return (
     <div className="relative  w-full text-gray-700 my-20">
       <div className="flex flex-col items-center">

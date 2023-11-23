@@ -14,26 +14,25 @@ const AdminDash = () => {
     axios.get("http://localhost:5000/users").then((data) => {
       setUsers(data.data);
     });
-  }, []);
+  }, [users]);
   useEffect(() => {
     axios.get("http://localhost:5000/bookings").then((data) => {
       setBookings(data.data);
     });
   }, []);
   //   console.log(users);
-  const makeAdmin = (id) => {
-    console.log(id);
-    axios.post(`http://localhost:5000/makeadmin/${id}`)
-    .then(data => {
-        console.log(data);
-        if (data.data.acknowledged) {
-            Swal.fire({
-                title: 'Admin Added',
-                text: "Admin Added Successful",
-                icon: "success",
-              });
-        }
-    })
+  const makeAdmin = (email) => {
+    console.log(email);
+    axios.post(`http://localhost:5000/makeadmin/${email}`).then((data) => {
+      console.log(data);
+      if (data.data.acknowledged) {
+        Swal.fire({
+          title: "Admin Added",
+          text: "Admin Added Successful",
+          icon: "success",
+        });
+      }
+    });
   };
   return (
     <div className="my-20 text-xl">
@@ -76,12 +75,16 @@ const AdminDash = () => {
                         {singleUser.userEmail}
                       </p>
                     </div>
-                    <button
-                      onClick={() => makeAdmin(singleUser._id)}
-                      className="my-5 text-sm py-2 px-4 bg-black text-white rounded-xl"
-                    >
-                      Make Admin
-                    </button>
+                    {singleUser.role === "admin" ? (
+                      <p className="ml-5 text-base font-agbalumo">Admin</p>
+                    ) : (
+                      <button
+                        onClick={() => makeAdmin(singleUser.userEmail)}
+                        className="text-sm py-2 px-4 bg-black text-white rounded-xl"
+                      >
+                        Make Admin
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}

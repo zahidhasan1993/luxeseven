@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../customhooks/useAuth";
 import Swal from "sweetalert2";
+import useAdmin from "../../customhooks/useAdmin";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
+  const { isAdmin } = useAdmin();
   const signOut = () => {
     logOut().then(() => {
       Swal.fire({
@@ -32,7 +34,7 @@ const Navbar = () => {
       </button>
 
       <div className="hidden sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer">
-        <Link to={user.role === 'admin' ? 'dashboard/admin' : 'dashboard/user'}>
+        <Link to={isAdmin === "admin" ? "dashboard/admin" : "dashboard/user"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-8 w-8"
