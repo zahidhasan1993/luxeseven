@@ -11,7 +11,7 @@ const UserDash = () => {
   const [bookings, setBookings] = useState([]);
   const [reset,setReset] = useState(false)
   useEffect(() => {
-    axios.get(`http://localhost:5000/bookings/${user.email}`).then((data) => {
+    axios.get(`https://luxeseven-server.vercel.app/bookings/${user.email}`).then((data) => {
       //   console.log(data);
       setBookings(data.data);
     });
@@ -30,7 +30,7 @@ const UserDash = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .post("http://localhost:5000/cencelBooking", { bId, rId })
+          .post("https://luxeseven-server.vercel.app/cencelBooking", { bId, rId })
           .then((data) => {
             console.log(data);
             if (

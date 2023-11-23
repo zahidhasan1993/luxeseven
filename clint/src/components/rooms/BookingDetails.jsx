@@ -30,7 +30,7 @@ const BookingDetails = () => {
     };
     setLoader(true);
     axios
-      .post("http://localhost:5000/create-payment", paymentData)
+      .post("https://luxeseven-server.vercel.app/create-payment", paymentData)
       .then((data) => {
         // console.log(data);
         if (data.data) {
@@ -44,7 +44,7 @@ const BookingDetails = () => {
             totalDays: differenceInDays,
             transectionID: data.data.charge.id,
           };
-          axios.post("http://localhost:5000/bookings", value).then((data) => {
+          axios.post("https://luxeseven-server.vercel.app/bookings", value).then((data) => {
             if (data.data.acknowledged) {
               Swal.fire({
                 icon: "success",

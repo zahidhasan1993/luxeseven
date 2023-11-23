@@ -11,19 +11,19 @@ const AdminDash = () => {
   const [bookings, setBookings] = useState([]);
   const rooms = useRooms();
   useEffect(() => {
-    axios.get("http://localhost:5000/users").then((data) => {
+    axios.get("https://luxeseven-server.vercel.app/users").then((data) => {
       setUsers(data.data);
     });
   }, [users]);
   useEffect(() => {
-    axios.get("http://localhost:5000/bookings").then((data) => {
+    axios.get("https://luxeseven-server.vercel.app/bookings").then((data) => {
       setBookings(data.data);
     });
   }, []);
   //   console.log(users);
   const makeAdmin = (email) => {
     console.log(email);
-    axios.post(`http://localhost:5000/makeadmin/${email}`).then((data) => {
+    axios.post(`https://luxeseven-server.vercel.app/makeadmin/${email}`).then((data) => {
       console.log(data);
       if (data.data.acknowledged) {
         Swal.fire({

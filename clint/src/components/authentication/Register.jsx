@@ -26,7 +26,7 @@ const Register = () => {
         .then((result) => {
           if (result.user) {
             axios
-              .post("http://localhost:5000/users", {
+              .post("https://luxeseven-server.vercel.app/users", {
                 userName: result.user.displayName,
                 userEmail: result.user.email,
               })
@@ -59,7 +59,7 @@ const Register = () => {
       .then((result) => {
         if (result.user) {
           axios
-            .post("http://localhost:5000/users", {
+            .post("https://luxeseven-server.vercel.app/users", {
               userName: result.user.displayName,
               userEmail: result.user.email,
             })

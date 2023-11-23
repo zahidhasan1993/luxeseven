@@ -4,7 +4,7 @@ import axios from "axios";
 const CustomerReviews = () => {
   const [people, setPeople] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/reviews").then((data) => {
+    axios.get("https://luxeseven-server.vercel.app/reviews").then((data) => {
       setPeople(data.data);
       // console.log(data);
     });

@@ -15,7 +15,7 @@ const AddRoom = () => {
       rent: data.rent,
       description: data.description,
     };
-    axios.post("http://localhost:5000/addroom", roomData).then((data) => {
+    axios.post("https://luxeseven-server.vercel.app/addroom", roomData).then((data) => {
       console.log(data);
       if (data.data.acknowledged) {
         Swal.fire({

@@ -39,7 +39,7 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          axios.get(`http://localhost:5000/rooms/${params.id}`),
+          axios.get(`https://luxeseven-server.vercel.app/rooms/${params.id}`),
       },
       {
         path: "dashboard/user",
