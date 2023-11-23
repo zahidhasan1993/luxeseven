@@ -33,7 +33,7 @@ const Navbar = () => {
         Logout
       </button>
 
-      <div className="hidden sm:inline-flex ml-auto md:ml-0 mr-4 md:mr-0 cursor-pointer">
+      <div className="ml-[9rem] mt-3 md:mt-0 md:ml-0 md:mr-0 cursor-pointer">
         <Link to={isAdmin === "admin" ? "dashboard/admin" : "dashboard/user"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
