@@ -9,12 +9,13 @@ const UserDash = () => {
   const { user } = useAuth();
   //   console.log(user.email);
   const [bookings, setBookings] = useState([]);
+  const [reset,setReset] = useState(false)
   useEffect(() => {
     axios.get(`http://localhost:5000/bookings/${user.email}`).then((data) => {
       //   console.log(data);
       setBookings(data.data);
     });
-  }, [setBookings, user.email]);
+  }, [setBookings, user.email,reset]);
   console.log(bookings);
   const cancelBooking = (bId, rId) => {
     console.log(rId, bId);
@@ -23,9 +24,9 @@ const UserDash = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#000000",
+      confirmButtonText: "Yes, Cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
@@ -41,6 +42,7 @@ const UserDash = () => {
                 text: "Your booking has been canceled.",
                 icon: "success",
               });
+              setReset((p) => !p);
             }
           });
       }
