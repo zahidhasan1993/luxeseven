@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useRooms from "../../customhooks/useRooms";
+import AddRoom from "./AddRoom";
 
 const AdminDash = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,7 @@ const AdminDash = () => {
       setBookings(data.data);
     });
   }, []);
-  console.log(users);
+  //   console.log(users);
   return (
     <div className="my-20 text-xl">
       <Tabs>
@@ -28,26 +29,28 @@ const AdminDash = () => {
           <Tab>All Rooms</Tab>
           <Tab>Add Room</Tab>
         </TabList>
-        <div className="mt-20">
+        <div className="my-10">
           <TabPanel>
-            <div className="md:grid md:grid-cols-3 md:gap-3 h-80">
+            <div className="md:grid md:grid-cols-3 md:gap-3">
               {bookings.map((booking) => (
-                <div key={booking._id}>
-                    <div className="p-14 border border-black rounded shadow-2xl hover:shadow-none font-agbalumo text-gray-700">
-                        <h1>Room Name : {booking.room}</h1>
-                        <h1>Email : {booking.userEmail}</h1>
-                        <h1>Total Days : {booking.totalDays}</h1>
-                        <h1 className="text-gray-600">Dates : {booking.checkIn} to {booking.checkOut}</h1>
-                        <h1>Cost : ${booking.cost}</h1>
-                    </div>
+                <div key={booking._id} className="mb-10 md:mb-0 ">
+                  <div className="p-14 border border-black rounded shadow-2xl hover:shadow-none font-agbalumo text-gray-700">
+                    <h1>Room Name : {booking.room}</h1>
+                    <h1>Email : {booking.userEmail}</h1>
+                    <h1>Total Days : {booking.totalDays}</h1>
+                    <h1 className="text-gray-600">
+                      Dates : {booking.checkIn} to {booking.checkOut}
+                    </h1>
+                    <h1>Cost : ${booking.cost}</h1>
+                  </div>
                 </div>
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="mt-10 md:grid md:grid-cols-3 md:gap-3">
+            <div className="my-10 md:grid md:grid-cols-3 md:gap-3">
               {users.map((singleUser) => (
-                <div key={singleUser._id}>
+                <div key={singleUser._id} className="mb-10 md:mb-0">
                   <div className="flex items-center relative p-4 w-full bg-white rounded-lg overflow-hidden shadow-2xl hover:shadow">
                     <div className="w-12 h-12 rounded-full bg-gray-100"></div>
                     <div className="ml-3">
@@ -104,7 +107,9 @@ const AdminDash = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 4</h2>
+            <div>
+              <AddRoom></AddRoom>
+            </div>
           </TabPanel>
         </div>
       </Tabs>

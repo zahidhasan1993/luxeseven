@@ -3,6 +3,7 @@ import img from "../../assets/gallery/1.jpg";
 import useAuth from "../../customhooks/useAuth";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Register = () => {
   const { googleLogin, emailSignUp } = useAuth();
@@ -22,13 +23,25 @@ const Register = () => {
     if (pass === confirmPass) {
       console.log(email, pass);
       emailSignUp(email, pass)
-        .then(() => {
+        .then((result) => {
+          if (result.user) {
+            axios
+              .post("http://localhost:5000/users", {
+                userName: result.user.displayName,
+                userEmail: result.user.email,
+              })
+              .then((data) => {
+                console.log(data.data);
+              });
+          } else {
+            console.log("something went wrong");
+          }
           Swal.fire({
             title: `User Created successful`,
             text: "Sign Up Successful",
             icon: "success",
           });
-          reset
+          reset;
         })
         .catch((error) => {
           console.log(error);
@@ -44,6 +57,18 @@ const Register = () => {
   const signUpGoogle = () => {
     googleLogin()
       .then((result) => {
+        if (result.user) {
+          axios
+            .post("http://localhost:5000/users", {
+              userName: result.user.displayName,
+              userEmail: result.user.email,
+            })
+            .then((data) => {
+              console.log(data.data);
+            });
+        } else {
+          console.log("something went wrong");
+        }
         Swal.fire({
           title: `User ${result.user.displayName} Created`,
           text: "Sign Up Successful",

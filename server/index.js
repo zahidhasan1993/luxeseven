@@ -77,6 +77,12 @@ async function run() {
       res.send(result);
     });
     //post apis
+    app.post('/addroom', async(req,res) => {
+      const body = req.body;
+      // console.log(body);
+      const result = await roomsCollection.insertOne(body);
+      res.send(result)
+    })
     app.post("/users", async (req, res) => {
       const body = req.body;
       const email = body.userEmail;
