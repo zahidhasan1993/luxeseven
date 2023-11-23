@@ -69,7 +69,7 @@ const UserDash = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-3 gap-5">
+            <div className="md:grid md:grid-cols-3 md:gap-5">
               {bookings.map((booking) => (
                 <div key={booking._id} className="">
                   <div className="border p-20 rounded-md text-2xl my-10 space-y-3 shadow-2xl hover:shadow">

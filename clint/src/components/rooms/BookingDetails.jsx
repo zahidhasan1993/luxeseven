@@ -88,7 +88,7 @@ const BookingDetails = () => {
           ></LazyLoadImage>
         </div>
       </div>
-      <div className="p-20 md:p-0 text-gray-600  text-2xl space-y-5 md:w-1/2">
+      <div className="p-14 md:p-0 text-gray-600  text-2xl space-y-5 md:w-1/2">
         <p className="font-agbalumo">
           Name: <span className="font-serif">{item.name}</span>
         </p>

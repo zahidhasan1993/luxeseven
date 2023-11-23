@@ -16,7 +16,7 @@ const Footer = () => {
   }
   // console.log(fullYear);
   return (
-    <footer className="bg-black p-20 text-white">
+    <footer className="bg-black p-5 md:p-20 text-white">
       <div className="container px-4 mx-auto">
         <div className="-mx-4 flex flex-wrap justify-between">
           <div className="px-4 w-full md:w-1/3 my-4">

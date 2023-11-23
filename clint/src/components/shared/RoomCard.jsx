@@ -75,7 +75,7 @@ const RoomCard = ({ item, checkIn, checkOut }) => {
           </p>
 
           <>
-            <div className="">
+            <div className="mt-5">
               <div className="flex gap-3">
                 <button
                   ref={trigger}
