@@ -56,6 +56,7 @@ const AdminDash = () => {
                       Dates : {booking.checkIn} to {booking.checkOut}
                     </h1>
                     <h1>Cost : ${booking.cost}</h1>
+                    <h1>Status : {booking.status}</h1>
                   </div>
                 </div>
               ))}
